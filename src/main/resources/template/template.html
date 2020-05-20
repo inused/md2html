@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title th:text="${title}"></title>
+  <link rel="shortcut icon"
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACsUlEQVR4Xu2bv2tTURhAz20THETyo5NDKSWDdBXFQeigWxGkb+xgq/4BDThUES26ilCciiCtg44VHLLYdhZdBBcXwVGpNA0iSAt5DuGG9NI078d3897LfWd7333LOd9LWtpEobl1bgI19rt7PcocUeVtqwmgAFgs+cducIXXLaVYKpfx/aZ55gRHVAvOygMU2S+YM9fIA5gD18gDmAPXyAOYg1HA3zxALZXN8YmMXIAw8jAiAeZr13n3fQd/88A8GkjmA2zNreE16l35MNuHjAfQ8p9Wd82jwGQyQK00ybOr9/Aada7ULnF5+iIQfvuQwQBbc2sAeI06lbNlPj7aNu4IR6YC9MpPTUzy4/nX7lmU7UNGAmhx6Mg/mX/A45srPXdEJ9UBbkzPcmfG6157jTrtjSZKdf6QpTm/fOHYdRhSG6B364vbD/lz+Lfvz/mfrV/mKDCpC9ArDp2tQ+c3PBukJoApDsHko775aRIPcJI4BJOXILEA/cQhuHzc7UMCAU4T/7L3jaef19lZec+1mVnz2ApDCXCatCbo1jUS2wfLAYKIQ3h5ScQDBJXWRJGX2j4IBwgjH0XcBiIBwohDPHnJ7YNAgDDyWlwpRXsjHf+SjBUginyUrWuktw8xAwSh+a/F3d1VIH3yECNAkO1LbN02kQMMQlLe1vbBQgBJcYDlN/fNkSiiAaTlAV58WDdHoogFsCFv89HXiASwIT9+u2qOrBA7gA15gLbfNkdWiB0A5OWH8ehrlMSHJCUDDFMeBJ6ALMuDQAApkpCHlLwEkpKHFDwBScqD0BMAUBwvcvhqzxz3JWlxjVgAzaCXQ1rENeIBskbi7wFJkwcwB66RBzAHrpEHMAeukQcwB66RBzAHrlFAqYqz3x5VqpJ/ebp7sVCqUGS/53h0OTNW5mWzBfAfNpDoCk5lspEAAAAASUVORK5CYII=">
+  <!--Markdown样式-->
+  <style type="text/css" th:utext="${mdCSS}"></style>
+  <!--目录树样式-->
+  <style type="text/css" th:utext="${zTreeCSS}"></style>
+  <!--高亮语法样式-->
+  <style type="text/css" th:utext="${highlightCSS}"></style>
+
+  <script type="text/javascript" th:utext="${jqueryJS}"></script>
+  <!--目录树js-->
+  <script type="text/javascript" th:utext="${zTreeJS}"></script>
+  <!--目录树js-->
+  <script type="text/javascript" th:utext="${zTreeTocJS}"></script>
+  <!--高亮JS-->
+  <script type="text/javascript" th:utext="${highlightJS}"></script>
+  <!--高亮JS 行号-->
+  <script type="text/javascript" th:utext="${highlightNumberJS}"></script>
+
+  <script type="text/javascript">
+    // 树形目录
+    $(document).ready(function () {
+      $('#tree').ztree_toc({
+        debug: false,
+        is_auto_number: false,
+        documment_selector: '.markdown-body',
+        ztreeStyle: {
+          width: '270px',
+          overflow: 'auto',
+          position: 'fixed',
+          'z-index': 2147483647,
+          border: '0px none',
+          left: '0px',
+          top: '0px'
+        }
+      });
+    });
+
+    // 语法高亮初始化
+    hljs.initHighlightingOnLoad();
+    hljs.initLineNumbersOnLoad();
+  </script>
+
+</head>
+<body>
+<div style='width:25%;'>
+  <ul id="tree" class="ztree" style='width:100%'>
+  </ul>
+</div>
+<div id='readme' style='width:70%;margin-left:25%;'>
+  <article class='markdown-body' th:utext="${body}"></article>
+</div>
+</body>
+</html>
